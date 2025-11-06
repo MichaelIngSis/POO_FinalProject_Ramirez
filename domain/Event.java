@@ -43,6 +43,15 @@ public class Event {
         }
     }
 
+    public void createEventLocations(String nameLocation){
+        eventLocations.add(nameLocation);
+    }
+
+    public void createEventCapacityByLocations(int CapacityByLocations){
+        
+    }
+
+
     public String getEventName(){return eventName;}
     public String getEventDate(){return eventDate;}
     public int getEventTime(){return eventTime;}
