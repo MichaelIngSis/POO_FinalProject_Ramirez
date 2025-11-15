@@ -5,11 +5,10 @@ public class Event {
     private String eventName;
     private String eventDate;
     private int eventTime;
-    private List<String> eventLocations;
-    private List<Integer> eventCapacityByLocations;
     private String eventType;
     private Venue venue;
     private List<Ticket> tickets;
+    private List<Location> locations;
 
     public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType){
         this.eventId = eventId;
@@ -52,25 +51,27 @@ public class Event {
         }
     }
 
-    public void createEventLocations(String nameLocation){
-        eventLocations.add(nameLocation);
-    }
-
     public void setVenue(Venue venue){
         this.venue = venue;
     }
 
-    public void createEventCapacityByLocations(List<String> nameLocations, List<Integer> capacityLocations){
-        int totalCapacity = 0;
-        if(capacityLocations.size() == nameLocations.size()){
-            for(int i = 0; i < capacityLocations.size(); i++){
-                totalCapacity += capacityLocations.get(i);
-            }
-            if(totalCapacity <= venue.getVenueCapacity()){
-                eventCapacityByLocations = capacityLocations;
-            }
-        }else{
+    public void createLocations(String locationName, int locationCapacity){
+        int totalLocationCapacity = 0;
+        for(Location location : locations){
+            totalLocationCapacity += location.getLocationCapacity();
+        }
+        if(totalLocationCapacity + locationCapacity <= venue.getVenueCapacity()){
+            locations.add(new Location(locationName, locationCapacity));
+        }
+    }
 
+    public void createTickets(){
+        int ticketNumber = 1;
+        for(Location location : locations){
+            for(int i = 1; i <= location.getLocationCapacity(); i++){
+                tickets.add(new Ticket(ticketNumber, i, location.getLocationName()));
+                ticketNumber += 1;
+            }
         }
     }
 
