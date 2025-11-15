@@ -18,6 +18,15 @@ public class Event {
         this.eventTime = eventTime;
         this.eventType = eventType;
     }
+/* 
+    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+        this.eventType = eventType;
+        this.venue = venue;
+    }*/
 
     public void setEventName(String newEventName){
         if(!newEventName.equals("")){
@@ -47,8 +56,22 @@ public class Event {
         eventLocations.add(nameLocation);
     }
 
-    public void createEventCapacityByLocations(int CapacityByLocations){
-        
+    public void setVenue(Venue venue){
+        this.venue = venue;
+    }
+
+    public void createEventCapacityByLocations(List<String> nameLocations, List<Integer> capacityLocations){
+        int totalCapacity = 0;
+        if(capacityLocations.size() == nameLocations.size()){
+            for(int i = 0; i < capacityLocations.size(); i++){
+                totalCapacity += capacityLocations.get(i);
+            }
+            if(totalCapacity <= venue.getVenueCapacity()){
+                eventCapacityByLocations = capacityLocations;
+            }
+        }else{
+
+        }
     }
 
 
