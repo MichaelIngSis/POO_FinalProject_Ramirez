@@ -9,6 +9,7 @@ public class TicketOffice {
     private String ticketOfficeCity;
     private List<Customer> customers;
     private List<Event> events;
+    private List<Ticket> ticketsRegister;
 
     public TicketOffice(int ticketOfficeNit, String ticketOfficeAddress, String ticketOfficeEmail, String ticketOfficePhoneNumber,
             String ticketOfficeCity){
@@ -19,6 +20,7 @@ public class TicketOffice {
         this.ticketOfficeCity = ticketOfficeCity;
         this.customers = new LinkedList<>();
         this.events = new LinkedList<>();
+        this.ticketsRegister = new LinkedList<>();
     }
 
     public void setTicketOfficeAddress(String newTicketOfficeAddress){
@@ -52,6 +54,24 @@ public class TicketOffice {
 
     public void addEvents(int eventId, String eventName, String eventDate, int eventTime, String eventType){
         events.add(new Event(eventId, eventName, eventDate, eventTime, eventType));
+    }
+
+    public Ticket sellTicket(Event event, Customer customer, Location location){
+        if(!event.getLocations().contains(location)){
+            throw new IllegalArgumentException("Esta localidad no pertenece al evento!");
+        }
+        if(!location.hasAvailability()){
+            throw new IllegalStateException("No hay más asientos ddisponibles en: " + location.getLocationName());
+        }
+        
+        int seatNumber = location.assignSeat();
+
+        Ticket ticket = new Ticket(event, location, customer, seatNumber);
+        
+        ticketsRegister.add(ticket);
+        event.addTicket(ticket);
+        
+        return ticket;
     }
 
     public int getTicketOfficeNit(){return ticketOfficeNit;}

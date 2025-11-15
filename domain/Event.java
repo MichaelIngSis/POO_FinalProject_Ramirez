@@ -65,16 +65,12 @@ public class Event {
         }
     }
 
-    public void createTickets(){
-        int ticketNumber = 1;
-        for(Location location : locations){
-            if(location.getLocationCapacity() > 0){
-                for(int i = 1; i <= location.getLocationCapacity(); i++){
-                    tickets.add(new Ticket(ticketNumber, i, location.getLocationName()));
-                    ticketNumber += 1;
-                }
-            }
-        }
+    public List<Location> getLocations(){
+        return locations;
+    }
+
+    public void addTicket(Ticket ticket){
+        tickets.add(ticket);
     }
 
     public int getEventId(){return eventId;}

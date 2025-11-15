@@ -1,21 +1,22 @@
 public class Ticket {
+
+    private static int globalCounter = 1;
     private int ticketNumber;
     private int ticketSeat;
-    private String ticketLocation;
+    private Location location;
     private Customer customer;
+    private Event event;
 
-    public Ticket(int ticketNumber, int ticketSeat, String ticketLocation){
-        this.ticketNumber = ticketNumber;
+    public Ticket(Event event, Location location, Customer customer, int ticketSeat){
+        this.ticketNumber = globalCounter ++;
         this.ticketSeat = ticketSeat;
-        this.ticketLocation = ticketLocation;
-    }
-
-    public void setCustomer(Customer customer){
+        this.location = location;
+        this.event = event;
         this.customer = customer;
     }
 
+
+
     public int getTicketNumber(){return ticketNumber;}
     public int ticketSeat(){return ticketSeat;}
-    public String ticketLocation(){return ticketLocation;}
-    public Customer getCustomer(){return customer;}
 }
