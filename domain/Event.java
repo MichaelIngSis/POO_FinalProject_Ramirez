@@ -17,7 +17,7 @@ public class Event {
         this.eventTime = eventTime;
         this.eventType = eventType;
     }
-/* 
+    /* 
     public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
         this.eventId = eventId;
         this.eventName = eventName;
@@ -77,7 +77,7 @@ public class Event {
         }
     }
 
-
+    public int getEventId(){return eventId;}
     public String getEventName(){return eventName;}
     public String getEventDate(){return eventDate;}
     public int getEventTime(){return eventTime;}
