@@ -1,6 +1,7 @@
 import java.util.List;
 
 public class Event {
+    private static int eventCounter = 1;
     private int eventId;
     private String eventName;
     private String eventDate;
@@ -10,8 +11,8 @@ public class Event {
     private List<Ticket> tickets;
     private List<Location> locations;
 
-    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType){
-        this.eventId = eventId;
+    public Event(String eventName, String eventDate, int eventTime, String eventType){
+        this.eventId = eventCounter ++;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventTime = eventTime;

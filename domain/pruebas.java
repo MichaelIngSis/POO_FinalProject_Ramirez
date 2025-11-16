@@ -1,18 +1,21 @@
 import java.io.Console;
+import java.util.List;
 public class pruebas {
     static Console console = System.console();
     public static void main(String[] args) {
-        Customer customer = new Customer(101, "Michael", "Ramírez", "Calle 65", "michael@prueba.com", "3033043938");
-        console.printf(""+customer.getCustomerId()+"\n");
-        console.printf(""+customer.getCustomerAddress()+"\n");
-        console.printf(""+customer.getCustomerEmail()+"\n");
-        console.printf(""+customer.getCustomerPhoneNumber()+"\n");
-        customer.setCustomerAddress("");
-        customer.setCustomerEmail("michael.ramirez@outlook.es");
-        customer.setCustomerPhoneNumber("3033023029");
-        console.printf("Datos despues de la modificación:");
-        console.printf(""+customer.getCustomerAddress()+"\n");
-        console.printf(""+customer.getCustomerEmail()+"\n");
-        console.printf(""+customer.getCustomerPhoneNumber()+"\n");
+        Event event = new Event("Perros Criollos", "26/10/2026", 1900, "Música");
+
+        Event event1 = new Event("Perras Criollas", "27/10/2028", 1900, "Música");
+
+        TicketOffice oficina = new TicketOffice(1001, "calle 89", "oficina@example.com", "+57 320302", "Manizales");
+
+        oficina.addEvents(event);
+        oficina.addEvents(event1);
+
+        List<Event> eventos = oficina.getEvents();
+
+        for(Event evento : eventos){
+            console.printf(""+evento.getEventId()+"\n");
+        }
     }
 }

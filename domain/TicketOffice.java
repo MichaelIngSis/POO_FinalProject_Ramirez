@@ -52,8 +52,12 @@ public class TicketOffice {
             customers.add(new Customer(customerId, customerName, customerLastname, customerAddress, customerEmail, customerPhoneNumber));
     }
 
-    public void addEvents(int eventId, String eventName, String eventDate, int eventTime, String eventType){
-        events.add(new Event(eventId, eventName, eventDate, eventTime, eventType));
+    public void addEvents(String eventName, String eventDate, int eventTime, String eventType){
+        events.add(new Event(eventName, eventDate, eventTime, eventType));
+    }
+
+    public void addEvents(Event event){
+        events.add(event);
     }
 
     public Ticket sellTicket(Event event, Customer customer, Location location){
