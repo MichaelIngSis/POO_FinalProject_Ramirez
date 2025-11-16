@@ -18,5 +18,5 @@ public class Ticket {
 
 
     public int getTicketNumber(){return ticketNumber;}
-    public int ticketSeat(){return ticketSeat;}
+    public int getTicketSeat(){return ticketSeat;}
 }

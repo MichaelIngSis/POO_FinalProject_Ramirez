@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class Customer {
@@ -17,6 +18,7 @@ public class Customer {
         this.customerAddress = customerAddress;
         this.customerEmail = customerEmail;
         this.customerPhoneNumber = customerPhoneNumber;
+        this.tickets = new LinkedList<>();
     }
 
     public void setCustomerAddress(String newCustomerAddress){
@@ -41,6 +43,8 @@ public class Customer {
         tickets.add(ticket);
     }
 
+    
+    public List<Ticket> getTickets(){return tickets;}
     public int getCustomerId(){return customerId;}
     public String getCustomerName(){return customerName;}
     public String getCustomerLastname(){return customerLastname;}

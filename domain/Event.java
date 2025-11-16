@@ -1,3 +1,4 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class Event {
@@ -17,6 +18,8 @@ public class Event {
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.eventType = eventType;
+        this.locations = new LinkedList<>();
+        this.tickets = new LinkedList<>();
     }
     /* 
     public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
@@ -58,9 +61,12 @@ public class Event {
 
     public void createLocations(String locationName, int locationCapacity){
         int totalLocationCapacity = 0;
-        for(Location location : locations){
-            totalLocationCapacity += location.getLocationCapacity();
+        if(locations != null){
+            for(Location location : locations){
+                totalLocationCapacity += location.getLocationCapacity();
+            }
         }
+        
         if(totalLocationCapacity + locationCapacity <= venue.getVenueCapacity()){
             locations.add(new Location(locationName, locationCapacity));
         }
@@ -74,6 +80,7 @@ public class Event {
         tickets.add(ticket);
     }
 
+    public List<Ticket> getTickets(){return tickets;}
     public int getEventId(){return eventId;}
     public String getEventName(){return eventName;}
     public String getEventDate(){return eventDate;}

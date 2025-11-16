@@ -52,6 +52,10 @@ public class TicketOffice {
             customers.add(new Customer(customerId, customerName, customerLastname, customerAddress, customerEmail, customerPhoneNumber));
     }
 
+    public void addCustomer(Customer customer){
+        customers.add(customer);
+    }
+
     public void addEvents(String eventName, String eventDate, int eventTime, String eventType){
         events.add(new Event(eventName, eventDate, eventTime, eventType));
     }
@@ -79,6 +83,7 @@ public class TicketOffice {
         return ticket;
     }
 
+    public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}
     public String getTicketOfficeAddress(){return ticketOfficeAddress;}
     public String getTicketOfficeEmail(){return ticketOfficeEmail;}
