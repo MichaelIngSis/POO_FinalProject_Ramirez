@@ -23,6 +23,7 @@ public class DemoData {
         event2.setVenue(venue);
 
         // Locations
+        Location location1 = new Location("Palcos", 1000);
         event1.createLocations("Palcos", 1000);
         event1.createLocations("General", 2000);
 

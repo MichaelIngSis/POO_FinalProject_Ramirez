@@ -23,15 +23,6 @@ public class Event implements Serializable{
         this.locations = new LinkedList<>();
         this.tickets = new LinkedList<>();
     }
-    /* 
-    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
-        this.eventId = eventId;
-        this.eventName = eventName;
-        this.eventDate = eventDate;
-        this.eventTime = eventTime;
-        this.eventType = eventType;
-        this.venue = venue;
-    }*/
 
     public void setEventName(String newEventName){
         if(!newEventName.equals("")){
@@ -61,7 +52,7 @@ public class Event implements Serializable{
         this.venue = venue;
     }
 
-    public void createLocations(String locationName, int locationCapacity){
+    public void createLocations(Location loc){
         int totalLocationCapacity = 0;
         if(locations != null){
             for(Location location : locations){
@@ -69,10 +60,20 @@ public class Event implements Serializable{
             }
         }
         
+        if(totalLocationCapacity + loc.getLocationCapacity() <= venue.getVenueCapacity()){
+            locations.add(loc);
+        }
+    }
+    public void createLocations(String locationName, int locationCapacity){
+        int totalLocationCapacity = 0;
+        if(locations != null){
+            for(Location location : locations){
+                totalLocationCapacity += location.getLocationCapacity();
+            }
+        }
         if(totalLocationCapacity + locationCapacity <= venue.getVenueCapacity()){
             locations.add(new Location(locationName, locationCapacity));
         }
-
     }
 
     public List<Location> getLocations(){

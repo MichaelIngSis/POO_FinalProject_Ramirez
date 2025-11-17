@@ -126,6 +126,16 @@ public class TicketOffice implements Serializable{
         autosave();
     }
 
+    public void addLocationToEvent(Event event, Location loc) {
+        if (event == null) {
+            throw new IllegalArgumentException("Evento no encontrado");
+        } 
+
+        event.createLocations(loc);   // modificar el evento
+
+        autosave();            // ← AUTOGUARDADO AQUÍ
+    }
+
     public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}
     public String getTicketOfficeAddress(){return ticketOfficeAddress;}

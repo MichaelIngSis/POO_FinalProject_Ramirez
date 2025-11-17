@@ -2,7 +2,7 @@ package ui;
 
 import domain.Event;
 import domain.TicketOffice;
-
+import domain.Location;
 import javax.swing.*;
 import java.awt.*;
 
@@ -49,8 +49,9 @@ public class AddLocationUI extends JFrame {
                     throw new IllegalArgumentException("La capacidad debe ser mayor que cero.");
 
                 // Crear localidad
-                event.createLocations(locName, locCapacity);
+                Location loc = new Location(locName, locCapacity);
 
+                office.addLocationToEvent(event, loc);
                 String basePath = System.getProperty("user.dir");
                 String filePath = basePath + java.io.File.separator + "ticketoffice.dat";
                 data.TicketOfficeStorage.save(office, filePath);
