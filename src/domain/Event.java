@@ -72,6 +72,7 @@ public class Event implements Serializable{
         if(totalLocationCapacity + locationCapacity <= venue.getVenueCapacity()){
             locations.add(new Location(locationName, locationCapacity));
         }
+
     }
 
     public List<Location> getLocations(){
@@ -82,10 +83,16 @@ public class Event implements Serializable{
         tickets.add(ticket);
     }
 
+    @Override
+    public String toString() {
+        return eventId + " - " + eventName + " (" + eventDate + ")";
+    }
+
     public List<Ticket> getTickets(){return tickets;}
     public int getEventId(){return eventId;}
     public String getEventName(){return eventName;}
     public String getEventDate(){return eventDate;}
     public int getEventTime(){return eventTime;}
     public String getEventType(){return eventType;}
+    public Venue getVenue(){return venue;}
 }

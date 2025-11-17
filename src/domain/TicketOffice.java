@@ -12,6 +12,7 @@ public class TicketOffice implements Serializable{
     private List<Customer> customers;
     private List<Event> events;
     private List<Ticket> ticketsRegister;
+    private List<Venue> venues;
 
     public TicketOffice(int ticketOfficeNit, String ticketOfficeAddress, String ticketOfficeEmail, String ticketOfficePhoneNumber,
             String ticketOfficeCity){
@@ -23,6 +24,7 @@ public class TicketOffice implements Serializable{
         this.customers = new LinkedList<>();
         this.events = new LinkedList<>();
         this.ticketsRegister = new LinkedList<>();
+        this.venues = new LinkedList<>();
     }
 
     public void setTicketOfficeAddress(String newTicketOfficeAddress){
@@ -109,7 +111,7 @@ public class TicketOffice implements Serializable{
         return true; // compra exitosa
     }
 
-    private void autosave() {
+    public void autosave() {
         try {
             String basePath = System.getProperty("user.dir");
             String path = basePath + File.separator + "ticketoffice.dat";
@@ -117,6 +119,11 @@ public class TicketOffice implements Serializable{
         } catch (Exception e) {
             System.out.println("Error al autoguardar: " + e.getMessage());
         }
+    }
+
+    public void addVenue(Venue venue){
+        venues.add(venue);
+        autosave();
     }
 
     public List<Ticket> getTickets(){return ticketsRegister;}
@@ -127,4 +134,5 @@ public class TicketOffice implements Serializable{
     public String getTicketOfficeCity(){return ticketOfficeCity;}
     public List<Customer> getCustomers(){return customers;}
     public List<Event> getEvents(){return events;}
+    public List<Venue> getVenues(){return venues;}
 }

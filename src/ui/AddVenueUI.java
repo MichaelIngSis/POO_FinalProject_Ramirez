@@ -1,0 +1,78 @@
+package ui;
+
+import domain.TicketOffice;
+import domain.Venue;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class AddVenueUI extends JFrame {
+
+    public AddVenueUI(TicketOffice office) {
+
+        setTitle("Agregar Venue");
+        setSize(400, 300);
+        setLocationRelativeTo(null);
+        setLayout(new GridLayout(6, 2));
+
+        JTextField nameField = new JTextField();
+        JTextField addressField = new JTextField();
+        JTextField capacityField = new JTextField();
+
+        // Características del venue
+        String[] characteristics = {
+                "Eventos de Música", 
+                "Eventos de Vehiculos", 
+                "Eventos Deportivos",
+                "Multiples Eventos",
+                "No especificada"
+        };
+        JComboBox<String> characteristicCombo = new JComboBox<>(characteristics);
+
+        JButton addBtn = new JButton("Agregar");
+
+        add(new JLabel("Nombre del Venue:"));
+        add(nameField);
+
+        add(new JLabel("Dirección:"));
+        add(addressField);
+
+        add(new JLabel("Capacidad:"));
+        add(capacityField);
+
+        add(new JLabel("Característica:"));
+        add(characteristicCombo);
+
+        add(new JLabel(""));
+        add(addBtn);
+
+        addBtn.addActionListener(e -> {
+            try {
+                String name = nameField.getText().trim();
+                String address = addressField.getText().trim();
+                int capacity = Integer.parseInt(capacityField.getText());
+
+                if (capacity <= 0)
+                    throw new IllegalArgumentException("La capacidad debe ser mayor que cero.");
+
+                String characteristic = (String) characteristicCombo.getSelectedItem();
+
+                // Crear venue
+                Venue v = new Venue(name, address, capacity, characteristic);
+
+                office.addVenue(v);
+
+                JOptionPane.showMessageDialog(this,
+                        "Venue agregado con ID: " + v.getVenueId());
+
+                dispose();
+                new MainMenu(office).setVisible(true);
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+            }
+        });
+
+        setVisible(true);
+    }
+}

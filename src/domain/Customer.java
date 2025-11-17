@@ -45,6 +45,11 @@ public class Customer implements Serializable{
         tickets.add(ticket);
     }
 
+    @Override
+    public String toString() {
+        return customerId + " - " + customerName + " " + customerLastname;
+    }
+
     
     public List<Ticket> getTickets(){return tickets;}
     public int getCustomerId(){return customerId;}

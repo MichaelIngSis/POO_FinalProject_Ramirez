@@ -2,9 +2,11 @@ package ui;
 
 import domain.Event;
 import domain.TicketOffice;
+import domain.Venue;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class AddEventUI extends JFrame {
 
@@ -13,7 +15,7 @@ public class AddEventUI extends JFrame {
         setTitle("Agregar Evento");
         setSize(400, 300);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(5, 2));
+        setLayout(new GridLayout(6, 2));
 
         JTextField nameField = new JTextField();
         JTextField dateField = new JTextField("2025-01-01");   // String
@@ -21,6 +23,26 @@ public class AddEventUI extends JFrame {
 
         String[] types = {"Concierto", "Teatro", "Deporte", "Cine", "Otro"};
         JComboBox<String> typeCombo = new JComboBox<>(types);
+
+        List<Venue> venues = office.getVenues();  // Debes tener este método
+        JComboBox<Venue> venueCombo = new JComboBox<>(venues.toArray(new Venue[0]));
+
+        // Para que se muestre el nombre del venue
+        venueCombo.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(
+                    JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                if (value instanceof Venue) {
+                    Venue v = (Venue) value;
+                    setText(v.getVenueId() + " - " + v.getVenueName());
+                }
+                return this;
+            }
+        });
+
 
         JButton addBtn = new JButton("Agregar");
 
@@ -35,6 +57,9 @@ public class AddEventUI extends JFrame {
 
         add(new JLabel("Tipo de Evento:"));
         add(typeCombo);
+
+        add(new JLabel("Lugar (Venue):"));
+        add(venueCombo);
 
         add(new JLabel());
         add(addBtn);
@@ -52,6 +77,13 @@ public class AddEventUI extends JFrame {
 
                 // ⬅ Crear el objeto EXACTO que tu clase requiere
                 Event ev = new Event(name, date, time, type);
+
+                Venue selectedVenue = (Venue) venueCombo.getSelectedItem();
+                if (selectedVenue == null){
+                    throw new IllegalArgumentException("Debe seleccionar un venue.");
+                }
+
+                ev.setVenue(selectedVenue);
 
                 office.addEvent(ev);
 

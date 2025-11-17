@@ -29,40 +29,6 @@ public class MainMenu extends JFrame {
         dispose();
         });
 
-        // 2. Cargar datos
-        JButton loadBtn = new JButton("Cargar Datos");
-        loadBtn.addActionListener(e -> {
-
-            String basePath = System.getProperty("user.dir");
-            String filePath = basePath + File.separator + "ticketoffice.dat";
-
-            TicketOffice loaded = data.TicketOfficeStorage.load(filePath);
-
-                if (loaded != null) {
-                    this.office = loaded;
-                    JOptionPane.showMessageDialog(this, "Datos cargados exitosamente.");
-
-                    new MainMenu(office).setVisible(true);
-                    dispose();
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "No se encontró archivo o ocurrió un error.");
-                }
-        });
-
-        // 3. Guardar datos
-        JButton saveBtn = new JButton("Guardar Datos");
-        saveBtn.addActionListener(e -> {
-
-            String basePath = System.getProperty("user.dir");
-            String filePath = basePath + File.separator + "ticketoffice.dat";
-
-            data.TicketOfficeStorage.save(office, filePath);
-
-            JOptionPane.showMessageDialog(this,
-            "Datos guardados en:\n" + filePath);
-        });
-
         // 4. Agregar eventos
         JButton addEventBtn = new JButton("Agregar Eventos");
         addEventBtn.addActionListener(e -> {
@@ -80,16 +46,30 @@ public class MainMenu extends JFrame {
         // 6. Consultar tickets de clientes
         JButton checkTicketsBtn = new JButton("Consultar Tickets de Clientes");
         checkTicketsBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Interfaz consultar clientes (por implementar)");
+            new CheckCustomerTicketsUI(office).setVisible(true);
+            dispose();
+        });
+
+
+        JButton venueBtn = new JButton("Agregar Venue");
+        venueBtn.addActionListener(e -> {
+            dispose();
+            new AddVenueUI(office).setVisible(true);
+        });
+
+        JButton locBtn = new JButton("Agregar Localidad");
+        locBtn.addActionListener(e ->{
+            dispose();
+            new AddLocationUI(office).setVisible(true);
         });
 
         // Agregar botones al panel
         panel.add(buyTicketBtn);
-        panel.add(loadBtn);
-        panel.add(saveBtn);
         panel.add(addEventBtn);
         panel.add(addCustomerBtn);
         panel.add(checkTicketsBtn);
+        panel.add(venueBtn);
+        panel.add(locBtn);
 
         add(panel);
     }
