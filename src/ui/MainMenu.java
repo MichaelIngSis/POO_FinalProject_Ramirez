@@ -19,5 +19,6 @@ public class MainMenu extends JFrame{
         });
 
         add(buyTicketBtn, BorderLayout.CENTER);
+
     }
 }

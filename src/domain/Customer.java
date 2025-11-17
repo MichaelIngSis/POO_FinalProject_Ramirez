@@ -1,8 +1,9 @@
 package domain;
 import java.util.LinkedList;
 import java.util.List;
+import java.io.*;
 
-public class Customer {
+public class Customer implements Serializable{
     private int customerId;
     private String customerName;
     private String customerLastname;

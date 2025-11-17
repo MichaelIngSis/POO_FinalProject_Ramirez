@@ -1,8 +1,9 @@
 package domain;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TicketOffice {
+public class TicketOffice implements Serializable{
     private int ticketOfficeNit;
     private String ticketOfficeAddress;
     private String ticketOfficeEmail;

@@ -1,5 +1,8 @@
 package domain;
-public class Venue {
+
+import java.io.*;
+
+public class Venue implements Serializable{
     private static int venueCounter = 1;
     private int venueId;
     private String venueName;

@@ -1,8 +1,9 @@
 package domain;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Event {
+public class Event implements Serializable{
     private static int eventCounter = 1;
     private int eventId;
     private String eventName;

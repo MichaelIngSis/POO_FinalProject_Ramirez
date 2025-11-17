@@ -1,5 +1,8 @@
 package domain;
-public class Ticket {
+
+import java.io.*;
+
+public class Ticket implements Serializable{
 
     private static int globalCounter = 1;
     private int ticketNumber;

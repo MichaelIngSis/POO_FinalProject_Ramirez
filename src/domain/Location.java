@@ -1,5 +1,8 @@
 package domain;
-public class Location {
+
+import java.io.*;
+
+public class Location implements Serializable{
     private String locationName;
     private int locationCapacity; //Hacer una agregación de Location en Event
     private int availableSeats;
