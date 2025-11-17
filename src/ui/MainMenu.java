@@ -38,16 +38,16 @@ public class MainMenu extends JFrame {
 
             TicketOffice loaded = data.TicketOfficeStorage.load(filePath);
 
-             if (loaded != null) {
-                 this.office = loaded;
-                 JOptionPane.showMessageDialog(this, "Datos cargados exitosamente.");
+                if (loaded != null) {
+                    this.office = loaded;
+                    JOptionPane.showMessageDialog(this, "Datos cargados exitosamente.");
 
-                new MainMenu(office).setVisible(true);
-                 dispose();
+                    new MainMenu(office).setVisible(true);
+                    dispose();
 
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontró archivo o ocurrió un error.");
-            }
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se encontró archivo o ocurrió un error.");
+                }
         });
 
         // 3. Guardar datos
@@ -73,13 +73,14 @@ public class MainMenu extends JFrame {
         // 5. Agregar clientes
         JButton addCustomerBtn = new JButton("Agregar Clientes");
         addCustomerBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Interfaz Agregar Clientes (por implementar)");
+            new AddCustomerUI(office).setVisible(true);
+            dispose();
         });
 
         // 6. Consultar tickets de clientes
         JButton checkTicketsBtn = new JButton("Consultar Tickets de Clientes");
         checkTicketsBtn.addActionListener(e -> {
-            JOptionPane.showMessageDialog(this, "Interfaz Consulta Tickets (por implementar)");
+            JOptionPane.showMessageDialog(this, "Interfaz consultar clientes (por implementar)");
         });
 
         // Agregar botones al panel
