@@ -30,6 +30,7 @@ public class AddVenueUI extends JFrame {
         JComboBox<String> characteristicCombo = new JComboBox<>(characteristics);
 
         JButton addBtn = new JButton("Agregar");
+        JButton backBtn = new JButton("Volver");
 
         add(new JLabel("Nombre del Venue:"));
         add(nameField);
@@ -43,7 +44,7 @@ public class AddVenueUI extends JFrame {
         add(new JLabel("Característica:"));
         add(characteristicCombo);
 
-        add(new JLabel(""));
+        add(backBtn);
         add(addBtn);
 
         addBtn.addActionListener(e -> {
@@ -66,11 +67,17 @@ public class AddVenueUI extends JFrame {
                         "Venue agregado con ID: " + v.getVenueId());
 
                 dispose();
-                new MainMenu(office).setVisible(true);
+                new ManageVenuesUI(office).setVisible(true);
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }
+        });
+
+        // ======== Acción volver ========
+        backBtn.addActionListener(e -> {
+            new ManageVenuesUI(office).setVisible(true);
+            dispose();
         });
 
         setVisible(true);

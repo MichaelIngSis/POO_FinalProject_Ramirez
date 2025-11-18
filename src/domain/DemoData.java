@@ -18,7 +18,9 @@ public class DemoData {
 
         // Crear venue
         Venue venue = new Venue("Aula Máxima", "Carrera 20", 3000, "Eventos de Música");
-
+        
+        office.addVenue(venue);
+        
         event1.setVenue(venue);
         event2.setVenue(venue);
 

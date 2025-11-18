@@ -130,11 +130,78 @@ public class TicketOffice implements Serializable{
         if (event == null) {
             throw new IllegalArgumentException("Evento no encontrado");
         } 
-
         event.createLocations(loc);   // modificar el evento
-
         autosave();            // ← AUTOGUARDADO AQUÍ
     }
+
+    public boolean removeVenue(int venueId) {
+
+        Venue venueToRemove = null;
+
+    // Buscar el venue por ID
+        for (Venue v : venues) {
+            if (v.getVenueId() == venueId) {
+                venueToRemove = v;
+                break;
+            }
+        }
+
+        if (venueToRemove == null) {
+            return false;   // No existe
+        }
+
+    // 1. Validar si un evento lo está usando
+        for (Event e : events) {
+            if (e.getVenue() != null && e.getVenue().getVenueId() == venueId) {
+
+            // 1.1 Si el evento tiene localidades creadas, bloquear eliminación
+            if (!e.getLocations().isEmpty()) {
+                System.out.println("No se puede eliminar: venue está asignado a evento " 
+                                   + e.getEventName() + " con localidades existentes.");
+                return false;
+            }
+
+            // 1.2 Si el evento tiene tickets vendidos, bloquear
+            if (!e.getTickets().isEmpty()) {
+                System.out.println("No se puede eliminar: venue está asignado a evento " 
+                                   + e.getEventName() + " con tickets vendidos.");
+                return false;
+            }
+
+            // Si no tiene localidades ni tickets → podemos desvincularlo
+                e.setVenue(null);
+            }
+        }
+
+    // 2. Eliminar de la lista de venues
+        venues.remove(venueToRemove);
+
+    // 3. Autoguardar cambios
+        autosave();
+
+        return true;
+    }
+
+    public boolean removeEvent(int eventId) {
+        Event toRemove = null;
+
+        for (Event ev : events) {
+            if (ev.getEventId() == eventId) {
+                toRemove = ev;
+                break;
+            }
+        }
+
+        if (toRemove != null) {
+            events.remove(toRemove);
+            autosave(); // ⬅ autoguardado inmediato
+            return true;
+        }
+
+        return false; // No encontrado
+    }
+
+
 
     public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}

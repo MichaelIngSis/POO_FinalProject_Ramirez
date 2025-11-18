@@ -45,6 +45,7 @@ public class AddEventUI extends JFrame {
 
 
         JButton addBtn = new JButton("Agregar");
+        JButton backBtn = new JButton("Volver");
 
         add(new JLabel("Nombre del Evento:"));
         add(nameField);
@@ -61,7 +62,7 @@ public class AddEventUI extends JFrame {
         add(new JLabel("Lugar (Venue):"));
         add(venueCombo);
 
-        add(new JLabel());
+        add(backBtn);
         add(addBtn);
 
         addBtn.addActionListener(e -> {
@@ -91,10 +92,15 @@ public class AddEventUI extends JFrame {
                     "Evento agregado con ID: " + ev.getEventId());
                 
                 dispose();
-                new MainMenu(office).setVisible(true);
+                new ManageEventsUI(office);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }
+        });
+
+        backBtn.addActionListener(e -> {
+            dispose();
+            new ManageEventsUI(office);
         });
 
         setVisible(true);

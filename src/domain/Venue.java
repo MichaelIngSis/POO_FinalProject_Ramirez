@@ -37,9 +37,22 @@ public class Venue implements Serializable{
         }
     }
 
+    public void setVenueAddress(String newVenueAddress){
+        venueAddress = newVenueAddress;
+    }
+
+    public void setVenueCapacity(int newVenueCapacity){
+        venueCapacity = newVenueCapacity;
+    }
+
     public int getVenueId(){return venueId;}
     public String getVenueName(){return venueName;}
     public String getVenueAddress(){return venueAddress;}
     public int getVenueCapacity(){return venueCapacity;}
     public String getVenueCharacteristic(){return venueCharacteristic;}
+
+    @Override
+    public String toString() {
+        return venueId + " - " + venueName + " (" + venueCharacteristic + ")";
+    }
 }

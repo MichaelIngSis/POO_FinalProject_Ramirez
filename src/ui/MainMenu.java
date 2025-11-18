@@ -19,7 +19,7 @@ public class MainMenu extends JFrame {
 
         // Panel vertical para botones
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(6, 1, 10, 10));
+        panel.setLayout(new GridLayout(7, 1, 10, 10));
         panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         // 1. Comprar ticket
@@ -27,13 +27,6 @@ public class MainMenu extends JFrame {
         buyTicketBtn.addActionListener(e -> {
         new EventSelectionUI(office).setVisible(true);
         dispose();
-        });
-
-        // 4. Agregar eventos
-        JButton addEventBtn = new JButton("Agregar Eventos");
-        addEventBtn.addActionListener(e -> {
-                new AddEventUI(office).setVisible(true);
-                dispose();
         });
 
         // 5. Agregar clientes
@@ -50,11 +43,16 @@ public class MainMenu extends JFrame {
             dispose();
         });
 
-
-        JButton venueBtn = new JButton("Agregar Venue");
-        venueBtn.addActionListener(e -> {
+        JButton manageVenuesBtn = new JButton("Administrar Venues");
+        manageVenuesBtn.addActionListener(e -> {
             dispose();
-            new AddVenueUI(office).setVisible(true);
+            new ManageVenuesUI(office).setVisible(true);
+        });
+
+        JButton manageEventsBtn = new JButton("Administrar Eventos");
+        manageEventsBtn.addActionListener(e -> {
+            new ManageEventsUI(office).setVisible(true);
+            dispose();
         });
 
         JButton locBtn = new JButton("Agregar Localidad");
@@ -63,12 +61,15 @@ public class MainMenu extends JFrame {
             new AddLocationUI(office).setVisible(true);
         });
 
+
+
+
         // Agregar botones al panel
         panel.add(buyTicketBtn);
-        panel.add(addEventBtn);
         panel.add(addCustomerBtn);
         panel.add(checkTicketsBtn);
-        panel.add(venueBtn);
+        panel.add(manageVenuesBtn);
+        panel.add(manageEventsBtn);
         panel.add(locBtn);
 
         add(panel);
