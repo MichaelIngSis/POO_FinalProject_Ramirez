@@ -52,7 +52,7 @@ public class ManageCustomerUI extends JFrame {
 
         // ---- Acción Agregar ----
         addBtn.addActionListener(e -> {
-            new AddCustomerUI(office);
+            new AddCustomerUI(office).setVisible(true);
             dispose();
         });
 
