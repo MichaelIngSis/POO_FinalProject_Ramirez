@@ -1,6 +1,5 @@
 package ui;
 
-import domain.Event;
 import domain.TicketOffice;
 import domain.Venue;
 
@@ -76,23 +75,17 @@ public class AddEventUI extends JFrame {
 
                 String type = (String) typeCombo.getSelectedItem();
 
-                // ⬅ Crear el objeto EXACTO que tu clase requiere
-                Event ev = new Event(name, date, time, type);
-
                 Venue selectedVenue = (Venue) venueCombo.getSelectedItem();
                 if (selectedVenue == null){
                     throw new IllegalArgumentException("Debe seleccionar un venue.");
                 }
 
-                ev.setVenue(selectedVenue);
-
-                office.addEvent(ev);
+                office.addEvent(name,date,time,type,selectedVenue);
 
                 JOptionPane.showMessageDialog(this, 
-                    "Evento agregado con ID: " + ev.getEventId());
-                
+                    "Evento agregado correctamente");
                 dispose();
-                new ManageEventsUI(office);
+                new ManageEventsUI(office).setVisible(true);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }
@@ -100,9 +93,7 @@ public class AddEventUI extends JFrame {
 
         backBtn.addActionListener(e -> {
             dispose();
-            new ManageEventsUI(office);
+            new ManageEventsUI(office).setVisible(true);
         });
-
-        setVisible(true);
     }
 }

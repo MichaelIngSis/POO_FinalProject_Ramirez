@@ -71,6 +71,5 @@ public class AddCustomerUI extends JFrame{
             new ManageCustomerUI(office).setVisible(true);
         });
 
-        setVisible(true);
     }
 }

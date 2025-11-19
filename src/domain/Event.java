@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Event implements Serializable{
-    private static int eventCounter = 1;
     private int eventId;
     private String eventName;
     private String eventDate;
@@ -14,14 +13,25 @@ public class Event implements Serializable{
     private List<Ticket> tickets;
     private List<Location> locations;
 
-    public Event(String eventName, String eventDate, int eventTime, String eventType){
-        this.eventId = eventCounter ++;
+    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType){
+        this.eventId = eventId;
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventTime = eventTime;
         this.eventType = eventType;
         this.locations = new LinkedList<>();
         this.tickets = new LinkedList<>();
+    }
+
+    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
+        this.eventId = eventId;
+        this.eventName = eventName;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+        this.eventType = eventType;
+        this.locations = new LinkedList<>();
+        this.tickets = new LinkedList<>();
+        this.venue = venue;
     }
 
     public void setEventName(String newEventName){
@@ -51,12 +61,6 @@ public class Event implements Serializable{
     public void setVenue(Venue venue){
         this.venue = venue;
     }
-
-    /*public void createLocations(Location loc){
-        if(isLocationCapacityValid(loc, loc.getLocationCapacity())){
-            locations.add(loc);
-        }
-    }*/
 
     public void createLocations(String locationName, int locationCapacity){
         if(isLocationCapacityValid(locationCapacity)){

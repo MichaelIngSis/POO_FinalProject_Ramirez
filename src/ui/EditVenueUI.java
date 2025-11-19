@@ -49,7 +49,5 @@ public class EditVenueUI extends JFrame{
             new ManageVenuesUI(office).setVisible(true);
             dispose();
         });
-
-        setVisible(true);
     }
 }

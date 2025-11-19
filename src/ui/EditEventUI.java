@@ -102,8 +102,6 @@ public class EditEventUI extends JFrame {
             dispose();
             new ManageEventsUI(office).setVisible(true);
         });
-
-        setVisible(true);
     }
 }
 

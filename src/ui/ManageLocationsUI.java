@@ -139,8 +139,6 @@ public class ManageLocationsUI extends JFrame {
             new MainMenu(office).setVisible(true);
             dispose();
         });
-
-        setVisible(true);
     }
 
     private void refreshList(String filter) {

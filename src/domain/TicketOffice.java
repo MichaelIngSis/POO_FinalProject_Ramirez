@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class TicketOffice implements Serializable{
+    private int eventCounter = 3;
+    private int venueCounter = 2;
     private int ticketOfficeNit;
     private String ticketOfficeAddress;
     private String ticketOfficeEmail;
@@ -62,8 +64,8 @@ public class TicketOffice implements Serializable{
         autosave();
     }
 
-    public void addEvent(String eventName, String eventDate, int eventTime, String eventType){
-        events.add(new Event(eventName, eventDate, eventTime, eventType));
+    public void addEvent(String eventName, String eventDate, int eventTime, String eventType, Venue venue){
+        events.add(new Event(eventCounter++, eventName, eventDate, eventTime, eventType, venue));
         autosave();
     }
 
@@ -121,8 +123,8 @@ public class TicketOffice implements Serializable{
         }
     }
 
-    public void addVenue(Venue venue){
-        venues.add(venue);
+    public void addVenue(String name, String address, int capacity, String characteristic){
+        venues.add(new Venue(venueCounter++, name, address, capacity, characteristic));
         autosave();
     }
 

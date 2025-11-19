@@ -101,8 +101,6 @@ public class ManageEventsUI extends JFrame {
             dispose();
             new MainMenu(office).setVisible(true);
         });
-
-        setVisible(true);
     }
 
     // --------------------------

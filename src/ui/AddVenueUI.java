@@ -1,7 +1,6 @@
 package ui;
 
 import domain.TicketOffice;
-import domain.Venue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,13 +57,10 @@ public class AddVenueUI extends JFrame {
 
                 String characteristic = (String) characteristicCombo.getSelectedItem();
 
-                // Crear venue
-                Venue v = new Venue(name, address, capacity, characteristic);
-
-                office.addVenue(v);
+                office.addVenue(name, address, capacity, characteristic);
 
                 JOptionPane.showMessageDialog(this,
-                        "Venue agregado con ID: " + v.getVenueId());
+                        "Venue agregado correctamente");
 
                 dispose();
                 new ManageVenuesUI(office).setVisible(true);
@@ -79,7 +75,5 @@ public class AddVenueUI extends JFrame {
             new ManageVenuesUI(office).setVisible(true);
             dispose();
         });
-
-        setVisible(true);
     }
 }

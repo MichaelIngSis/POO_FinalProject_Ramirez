@@ -3,16 +3,16 @@ package domain;
 import java.io.*;
 
 public class Venue implements Serializable{
-    private static int venueCounter = 1;
+
     private int venueId;
     private String venueName;
     private String venueAddress;
     private int venueCapacity;
     private String venueCharacteristic;
 
-    public Venue(String venueName, String venueAddress, int venueCapacity, 
+    public Venue(int venueId, String venueName, String venueAddress, int venueCapacity, 
             String venueCharacteristic){
-        this.venueId = venueCounter ++;
+        this.venueId = venueId;
         this.venueName = venueName;
         this.venueAddress = venueAddress;
         this.venueCapacity = venueCapacity;

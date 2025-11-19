@@ -53,7 +53,7 @@ public class ManageVenuesUI extends JFrame {
 
         // ======== Acción agregar ========
         addBtn.addActionListener(e -> {
-            new AddVenueUI(office);   // UI para agregar
+            new AddVenueUI(office).setVisible(true);   // UI para agregar
             dispose();
         });
 
@@ -64,7 +64,7 @@ public class ManageVenuesUI extends JFrame {
                 JOptionPane.showMessageDialog(this, "Selecciona un venue.");
                 return;
             }
-            new EditVenueUI(office, v);
+            new EditVenueUI(office, v).setVisible(true);
             dispose();
         });
 
@@ -84,8 +84,6 @@ public class ManageVenuesUI extends JFrame {
             new MainMenu(office).setVisible(true);
             dispose();
         });
-
-        setVisible(true);
     }
 
     private void refreshList(String filter) {

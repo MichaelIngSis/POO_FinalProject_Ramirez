@@ -13,13 +13,12 @@ public class DemoData {
         );
 
         // Crear eventos
-        Event event1 = new Event("Perros Criollos", "26/10/2026", 1900, "Música");
-        Event event2 = new Event("Perras Criollas", "27/10/2028", 1900, "Música");
+        Event event1 = new Event(1,"Perros Criollos", "26/10/2026", 1900, "Música");
+        Event event2 = new Event(2,"Perras Criollas", "27/10/2028", 1900, "Música");
 
-        // Crear venue
-        Venue venue = new Venue("Aula Máxima", "Carrera 20", 3000, "Eventos de Música");
+        Venue venue = new Venue (1, "Estadio Palogrande", "La Estrella", 30000, "EEventos de Música");
         
-        office.addVenue(venue);
+        office.addVenue("Aula Máxima", "Carrera 20", 3000, "Eventos de Música");
         
         event1.setVenue(venue);
         event2.setVenue(venue);

@@ -90,6 +90,5 @@ public class EditCustomerUI extends JFrame {
             new ManageCustomerUI(office).setVisible(true);
         });
 
-        setVisible(true);
     }
 }

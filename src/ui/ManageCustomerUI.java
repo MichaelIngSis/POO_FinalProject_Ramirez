@@ -101,7 +101,6 @@ public class ManageCustomerUI extends JFrame {
             new MainMenu(office).setVisible(true);
         });
 
-        setVisible(true);
     }
 
     // ------------------------------------------------------------

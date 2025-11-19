@@ -55,6 +55,8 @@ public class CheckCustomerTicketsUI extends JFrame {
         });
 
         add(backBtn, BorderLayout.SOUTH);
+
+        setVisible(true);
     }
 
     private String buildTicketInfo(Customer c) {
@@ -75,7 +77,6 @@ public class CheckCustomerTicketsUI extends JFrame {
               .append("Asiento: ").append(t.getTicketSeat()).append("\n")
               .append("--------------\n");
         }
-
         return sb.toString();
     }
 }
