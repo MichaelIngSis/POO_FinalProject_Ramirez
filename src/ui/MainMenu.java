@@ -29,13 +29,6 @@ public class MainMenu extends JFrame {
         dispose();
         });
 
-        // 5. Agregar clientes
-        JButton addCustomerBtn = new JButton("Agregar Clientes");
-        addCustomerBtn.addActionListener(e -> {
-            new AddCustomerUI(office).setVisible(true);
-            dispose();
-        });
-
         // 6. Consultar tickets de clientes
         JButton checkTicketsBtn = new JButton("Consultar Tickets de Clientes");
         checkTicketsBtn.addActionListener(e -> {
@@ -55,6 +48,12 @@ public class MainMenu extends JFrame {
             dispose();
         });
 
+        JButton manageCustomerBtn = new JButton("Administrar Clientes");
+        manageCustomerBtn.addActionListener(e -> {
+            new ManageCustomerUI(office).setVisible(true);
+            dispose();
+        });
+
         JButton locBtn = new JButton("Agregar Localidad");
         locBtn.addActionListener(e ->{
             dispose();
@@ -66,10 +65,10 @@ public class MainMenu extends JFrame {
 
         // Agregar botones al panel
         panel.add(buyTicketBtn);
-        panel.add(addCustomerBtn);
         panel.add(checkTicketsBtn);
         panel.add(manageVenuesBtn);
         panel.add(manageEventsBtn);
+        panel.add(manageCustomerBtn);
         panel.add(locBtn);
 
         add(panel);

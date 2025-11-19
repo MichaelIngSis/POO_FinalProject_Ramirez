@@ -22,6 +22,7 @@ public class AddCustomerUI extends JFrame{
         JTextField phoneNumberField = new JTextField();
 
         JButton addBtn = new JButton("Agregar");
+        JButton backBtn = new JButton("Volver");
 
         add(new JLabel("Identificación del Cliente:"));
         add(idField);
@@ -41,7 +42,7 @@ public class AddCustomerUI extends JFrame{
         add(new JLabel("Número de Teléfono del Cliente:"));
         add(phoneNumberField);
 
-        add(new JLabel());
+        add(backBtn);
         add(addBtn);
 
         addBtn.addActionListener(e -> {
@@ -59,10 +60,15 @@ public class AddCustomerUI extends JFrame{
 
                 JOptionPane.showMessageDialog(this, "Cliente con id: " + customer.getCustomerId() + " agregado");
                 dispose();
-                new MainMenu(office).setVisible(true);
+                new ManageCustomerUI(office).setVisible(true);
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(this, "Error: "+ ex.getMessage());
             }
+        });
+
+        backBtn.addActionListener(e -> {
+            dispose();
+            new ManageCustomerUI(office).setVisible(true);
         });
 
         setVisible(true);

@@ -202,6 +202,28 @@ public class TicketOffice implements Serializable{
     }
 
 
+    public boolean removeCustomer(int id) {
+        Customer target = null;
+
+        // Buscar el cliente
+        for (Customer c : customers) {
+            if (c.getCustomerId() == id) {
+                target = c;
+                break;
+            }
+        }
+        if (target != null) {
+            customers.remove(target);
+            autosave();
+            return true;
+            
+        }
+
+        return false;
+}
+
+
+
 
     public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}
