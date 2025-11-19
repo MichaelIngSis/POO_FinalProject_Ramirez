@@ -14,14 +14,17 @@ public class EventSelectionUI extends JFrame {
         this.office = office;
 
         setTitle("Seleccionar Evento");
-        setSize(400, 300);
+        setSize(400, 350);
         setLocationRelativeTo(null);
-        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLayout(new BorderLayout(10, 10)); // ← ORGANIZACIÓN REAL
 
+        // ---------- PANEL SUPERIOR (TITULO) ----------
         JLabel title = new JLabel("Seleccione un evento:", SwingConstants.CENTER);
+        title.setFont(new Font("Arial", Font.BOLD, 18));
         add(title, BorderLayout.NORTH);
 
-        // Lista de eventos
+        // ---------- PANEL CENTRAL (LISTA DE EVENTOS) ----------
         DefaultListModel<String> model = new DefaultListModel<>();
         for (Event e : office.getEvents()) {
             model.addElement(e.getEventName());
@@ -30,7 +33,18 @@ public class EventSelectionUI extends JFrame {
         JList<String> eventList = new JList<>(model);
         add(new JScrollPane(eventList), BorderLayout.CENTER);
 
+        // ---------- PANEL INFERIOR (BOTONES) ----------
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
+
         JButton continueBtn = new JButton("Continuar");
+        JButton backBtn = new JButton("Volver");
+
+        bottomPanel.add(backBtn);
+        bottomPanel.add(continueBtn);
+
+        add(bottomPanel, BorderLayout.SOUTH);
+
+        // ---------- LISTENERS ----------
         continueBtn.addActionListener(e -> {
             int index = eventList.getSelectedIndex();
             if (index == -1) {
@@ -43,7 +57,10 @@ public class EventSelectionUI extends JFrame {
             dispose();
         });
 
-        add(continueBtn, BorderLayout.SOUTH);
+        backBtn.addActionListener(e -> {
+            new MainMenu(office).setVisible(true);
+            dispose();
+        });
     }
 }
 

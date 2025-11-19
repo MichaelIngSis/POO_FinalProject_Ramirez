@@ -20,7 +20,7 @@ public class TicketPurchaseUI extends JFrame {
         setTitle("Comprar Tickets - " + event.getEventName());
         setSize(450, 350);
         setLocationRelativeTo(null);
-        setLayout(new GridLayout(8, 1, 10, 10));
+        setLayout(new GridLayout(9, 1, 10, 10));
 
         // --- Info del evento ---
         JLabel eventInfo = new JLabel(
@@ -29,9 +29,9 @@ public class TicketPurchaseUI extends JFrame {
         );
 
         // --- Selección de cliente ---
-        JComboBox<String> clientBox = new JComboBox<>();
+        JComboBox<Customer> clientBox = new JComboBox<>();
         for (Customer c : office.getCustomers()) {
-            clientBox.addItem(c.getCustomerName());
+            clientBox.addItem(c);
         }
 
         if (office.getCustomers().isEmpty()) {
@@ -60,6 +60,7 @@ public class TicketPurchaseUI extends JFrame {
         JSpinner qtySpinner = new JSpinner(qtyModel);
 
         JButton confirmBtn = new JButton("Confirmar Compra");
+        JButton backBtn = new JButton("Volver");
 
         // --- Acción de comprar ---
         confirmBtn.addActionListener(e -> {
@@ -106,6 +107,11 @@ public class TicketPurchaseUI extends JFrame {
             }
         });
 
+        backBtn.addActionListener(e -> {
+            new EventSelectionUI(office).setVisible(true);
+            dispose();
+        });
+
         add(eventInfo);
         add(new JLabel("Seleccione Cliente:", SwingConstants.CENTER));
         add(clientBox);
@@ -114,5 +120,6 @@ public class TicketPurchaseUI extends JFrame {
         add(new JLabel("Cantidad de Tickets:", SwingConstants.CENTER));
         add(qtySpinner);
         add(confirmBtn);
+        add(backBtn);
     }
 }
