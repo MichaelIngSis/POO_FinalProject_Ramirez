@@ -52,7 +52,7 @@ public class ManageEventsUI extends JFrame {
 
 
         addBtn.addActionListener(e -> {
-            new AddEventUI(office);
+            new AddEventUI(office).setVisible(true);
             dispose();
         });
 
