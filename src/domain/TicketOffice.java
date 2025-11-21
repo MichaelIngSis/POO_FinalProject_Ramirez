@@ -3,6 +3,8 @@ import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
+import data.CSVEncoder;
+
 public class TicketOffice implements Serializable{
     private int eventCounter = 3;
     private int venueCounter = 2;
@@ -239,7 +241,107 @@ public class TicketOffice implements Serializable{
     }
 
 
+    public void encoderEvents(List<Event> listEvents){
+        CSVEncoder<Event> encoder = new CSVEncoder<>(){
+            @Override
+            public String[] getFieldNames() {
+                return new String[]{
+                    "eventId",
+                    "eventName",
+                    "eventDate",
+                    "eventTime",
+                    "eventType",
+                    "eventVenue"
+                };
+            }
+            @Override
+            public String[] getValues(Event event) {
+                return new String[]{
+                    String.valueOf(event.getEventId()),
+                    event.getEventName(),
+                    event.getEventDate(),
+                    String.valueOf(event.getEventTime()),
+                    event.getEventType(),
+                    event.getVenue().getVenueName()
+                };
+            }
+            @Override
+            public String getListName() {
+                return "Events";
+            }
+        };
+        saveCSV("CSVEvents.csv",encoder.encode(listEvents));
+    }
 
+    public void encoderCustomer(List<Customer> listCustomers){
+        CSVEncoder<Customer> encoder = new CSVEncoder<>(){
+            @Override
+            public String[] getFieldNames() {
+                return new String[]{
+                    "customerId",
+                    "customerName",
+                    "customerLastname",
+                    "customerAddress",
+                    "customerEmail",
+                    "customerPhoneNumber"
+                };
+            }
+            @Override
+            public String[] getValues(Customer customer) {
+                return new String[]{
+                    String.valueOf(customer.getCustomerId()),
+                    customer.getCustomerName(),
+                    customer.getCustomerLastname(),
+                    customer.getCustomerAddress(),
+                    customer.getCustomerEmail(),
+                    customer.getCustomerPhoneNumber()
+                };
+            }
+            @Override
+            public String getListName() {
+                return "Customers";
+            }
+        };
+        saveCSV("CSVCustomers.csv",encoder.encode(listCustomers));
+    }
+
+    public void encoderVenues(List<Venue> listVenues){
+        CSVEncoder<Venue> encoder = new CSVEncoder<>(){
+            @Override
+            public String[] getFieldNames() {
+                return new String[]{
+                    "venueId",
+                    "venueName",
+                    "venueAddress",
+                    "venueCapacity",
+                    "venueCharacteristic"
+                };
+            }
+            @Override
+            public String[] getValues(Venue venue) {
+                return new String[]{
+                    String.valueOf(venue.getVenueId()),
+                    venue.getVenueName(),
+                    venue.getVenueAddress(),
+                    String.valueOf(venue.getVenueCapacity()),
+                    venue.getVenueCharacteristic()
+                };
+            }
+            @Override
+            public String getListName() {
+                return "Venues";
+            }
+        };
+        saveCSV("CSVVenues.csv",encoder.encode(listVenues));
+    }
+
+    public static void saveCSV(String fileName, String csvContent){
+        try(FileWriter writer = new FileWriter(fileName)){
+            writer.write(csvContent);
+        }catch(IOException e){
+            System.err.println("Error al crear el archivo csv: " + e.getMessage());
+        }
+    }
 
     public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}

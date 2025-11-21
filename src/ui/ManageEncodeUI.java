@@ -1,0 +1,62 @@
+package ui;
+
+import javax.swing.*;
+
+import domain.TicketOffice;
+
+import java.awt.*;
+
+public class ManageEncodeUI extends JFrame {
+    private TicketOffice office;
+
+    public ManageEncodeUI(TicketOffice office){
+        this.office = office;
+
+        setTitle("CSV Encoder");
+        setSize(400, 400);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout(10,10));
+
+        // ---------- PANEL SUPERIOR CON BOTONES GRANDES ----------
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayout(3, 1, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+        JButton encodeEventsBtn = new JButton("Exportar Eventos");
+        encodeEventsBtn.addActionListener(e -> {
+            office.encoderEvents(office.getEvents());
+        });
+
+        JButton encodeCustomersBtn = new JButton("Exportar Clientes");
+        encodeCustomersBtn.addActionListener(e -> {
+            office.encoderCustomer(office.getCustomers());
+        });
+
+        JButton encodeVenuesBtn = new JButton("Exportar Sitios de Eventos");
+        encodeVenuesBtn.addActionListener(e -> {
+            office.encoderVenues(office.getVenues());
+        });
+
+        mainPanel.add(encodeEventsBtn);
+        mainPanel.add(encodeCustomersBtn);
+        mainPanel.add(encodeVenuesBtn);
+
+        // ---------- PANEL INFERIOR PARA EL BOTÓN PEQUEÑO ----------
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0));
+
+        JButton backBtn = new JButton("Volver");
+        backBtn.setPreferredSize(new Dimension(100, 30)); // tamaño más pequeño
+        backBtn.addActionListener(e -> {
+            new MainMenu(office).setVisible(true);
+            dispose();
+        });
+
+        bottomPanel.add(backBtn);
+
+        // Agregar paneles
+        add(mainPanel, BorderLayout.CENTER);
+        add(bottomPanel, BorderLayout.SOUTH);
+    }
+}
+

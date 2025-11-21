@@ -60,6 +60,12 @@ public class MainMenu extends JFrame {
             dispose();
         });
 
+        JButton manageEncodeBtn = new JButton("Exportar CSV");
+        manageEncodeBtn.addActionListener(e -> {
+            new ManageEncodeUI(office).setVisible(true);
+            dispose();
+        });
+
         // Agregar botones al panel
         panel.add(buyTicketBtn);
         panel.add(checkTicketsBtn);
@@ -67,6 +73,7 @@ public class MainMenu extends JFrame {
         panel.add(manageEventsBtn);
         panel.add(manageCustomerBtn);
         panel.add(manageLocationBtn);
+        panel.add(manageEncodeBtn);
 
 
         add(panel);

@@ -1,0 +1,3 @@
+customerId,customerName,customerLastname,customerAddress,customerEmail,customerPhoneNumber
+1001,Michael,Ramirez,Calle 76,michael@example.com,+57 91921
+1002,Andrea,Lopez,calle 65 # 32 - 24,andrealopez@example.com,+57 312 409 98 92
