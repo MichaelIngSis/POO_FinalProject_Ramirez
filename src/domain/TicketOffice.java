@@ -6,7 +6,7 @@ import java.util.List;
 import data.CSVEncoder;
 
 public class TicketOffice implements Serializable{
-    private int eventCounter = 3;
+    private int eventCounter = 1;
     private int venueCounter = 1;
     private int ticketOfficeNit;
     private String ticketOfficeAddress;
@@ -55,12 +55,6 @@ public class TicketOffice implements Serializable{
         }
     }
 
-    public void addCustomer(int customerId, String customerName, String customerLastname,
-                    String customerAddress, String customerEmail, String customerPhoneNumber){
-            customers.add(new Customer(customerId, customerName, customerLastname, customerAddress, customerEmail, customerPhoneNumber));
-            autosave();
-    }
-
     public void addCustomer(Customer customer){
         customers.add(customer);
         autosave();
@@ -68,11 +62,6 @@ public class TicketOffice implements Serializable{
 
     public void addEvent(String eventName, String eventDate, int eventTime, String eventType, Venue venue){
         events.add(new Event(eventCounter++, eventName, eventDate, eventTime, eventType, venue));
-        autosave();
-    }
-
-    public void addEvent(Event event){
-        events.add(event);
         autosave();
     }
 

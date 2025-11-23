@@ -14,16 +14,6 @@ public class Event implements Serializable{
     private List<Ticket> tickets;
     private List<Location> locations;
 
-    public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType){
-        this.eventId = eventId;
-        this.eventName = eventName;
-        this.eventDate = eventDate;
-        this.eventTime = eventTime;
-        this.eventType = eventType;
-        this.locations = new LinkedList<>();
-        this.tickets = new LinkedList<>();
-    }
-
     public Event(int eventId, String eventName, String eventDate, int eventTime, String eventType, Venue venue){
         this.eventId = eventId;
         this.eventName = eventName;
@@ -70,6 +60,8 @@ public class Event implements Serializable{
         locations.add(new Location(locationName, locationCapacity));
     }
 
+    
+    //Se usa para crear de cero la locación
     public boolean isLocationCapacityValid(int newCapacity){
         int totalLocationCapacity = 0;
         if(locations != null){
@@ -80,6 +72,7 @@ public class Event implements Serializable{
         return (totalLocationCapacity + newCapacity <= venue.getVenueCapacity()) ? true : false;
     }
     
+    //Se usa para modificar o actualizar la localidad
     public boolean isLocationCapacityValid(Location loc, int newCapacity){
         int totalLocationCapacity = 0;
         if(locations != null){
