@@ -133,26 +133,28 @@ public class TicketOffice implements Serializable{
         data.TicketOfficeStorage.save(this, path);
     }
 
+    //Creates, registers, and saves a new venue using the next available venue ID. Throws an exception if saving fails.
     public void addVenue(String name, String address, int capacity, String characteristic) throws Exception{
         venues.add(new Venue(venueCounter++, name, address, capacity, characteristic));
         autosave();
     }
 
+    // Assigns a new location to an existing event, validates the input, and persists the changes to storage
     public void addLocationToEvent(Event event, String name, int capacity) throws Exception{
         if (event == null) {
             throw new IllegalArgumentException("Evento no encontrado");
         } 
-        event.createLocations(name, capacity);   // modificar el evento
-        autosave();            // ← AUTOGUARDADO AQUÍ
+        event.createLocations(name, capacity);
+        autosave();            
     }
 
-
+    // Updates the details of a specific location assigned to an event, validates changes, and persists the data.
     public void updateLocationOfEvent(Event ev, Location loc, String newName, int newCapacity) throws Exception{
         ev.updateLocation(loc, newName, newCapacity);
         autosave();
     }
 
-    
+    // Removes a location from an event, but only after verifying that no tickets have been sold for it yet
     public void removeLocationFromEvent(Event ev, Location loc) throws Exception{
         for(Event e : events){
             for (Ticket ticket : e.getTickets()){
@@ -166,55 +168,50 @@ public class TicketOffice implements Serializable{
     }
 
 
+    /**
+    * Attempts to remove a venue by its ID after validating several conditions.
+    *
+    * The venue cannot be removed if:
+    * 1. It is currently associated with any event that has existing locations defined.
+    * 2. It is currently associated with any event that has tickets already sold.
+    * If safe to remove, the venue is deleted and an autosave is triggered.
+    */
     public boolean removeVenue(int venueId) throws Exception{
-
         Venue venueToRemove = null;
-
-    // Buscar el venue por ID
         for (Venue v : venues) {
             if (v.getVenueId() == venueId) {
                 venueToRemove = v;
                 break;
             }
         }
-
         if (venueToRemove == null) {
-            return false;   // No existe
+            return false;
         }
-
-    // 1. Validar si un evento lo está usando
         for (Event e : events) {
             if (e.getVenue() != null && e.getVenue().getVenueId() == venueId) {
-
-            // 1.1 Si el evento tiene localidades creadas, bloquear eliminación
-            if (!e.getLocations().isEmpty()) {
-                System.out.println("No se puede eliminar: venue está asignado a evento " 
+                if (!e.getLocations().isEmpty()) {
+                    System.out.println("No se puede eliminar: venue está asignado a evento " 
                                    + e.getEventName() + " con localidades existentes.");
-                return false;
-            }
-
-            // 1.2 Si el evento tiene tickets vendidos, bloquear
-            if (!e.getTickets().isEmpty()) {
-                System.out.println("No se puede eliminar: venue está asignado a evento " 
+                    return false;
+                }
+                if (!e.getTickets().isEmpty()) {
+                    System.out.println("No se puede eliminar: venue está asignado a evento " 
                                    + e.getEventName() + " con tickets vendidos.");
-                return false;
-            }
-
-            // Si no tiene localidades ni tickets → podemos desvincularlo
+                    return false;
+                }
                 e.setVenue(null);
             }
         }
-
-    // 2. Eliminar de la lista de venues
         venues.remove(venueToRemove);
-
-    // 3. Autoguardar cambios
         autosave();
-
         return true;
     }
 
-    
+    /**
+    * Removes an event by its ID after validating several conditions.
+    * The event can only be removed if no tickets have already been sold for it.
+    * If safe to remove, the event is deleted and an autosave is triggered.
+    */
     public boolean removeEvent(int eventId) throws Exception{
         Event toRemove = null;
 
@@ -229,20 +226,16 @@ public class TicketOffice implements Serializable{
             if(!toRemove.getTickets().isEmpty()){
                 throw new IllegalStateException("Ya se han vendido tiquetes para este evento");
             }
-
             events.remove(toRemove);
             autosave(); // ⬅ autoguardado inmediato
             return true;
         }
-        
         return false; // No encontrado
     }
 
-
+    // Removes a customer from the customer list if their ID matches. Persists changes upon success.
     public boolean removeCustomer(int id) throws Exception{
         Customer target = null;
-
-        // Buscar el cliente
         for (Customer c : customers) {
             if (c.getCustomerId() == id) {
                 target = c;
@@ -255,11 +248,13 @@ public class TicketOffice implements Serializable{
             return true;
             
         }
-
         return false;
     }
 
-
+    /* 
+    * Encodes a list of Event objects into a CSV format (using a custom CSVEncoder implementation)
+    * and saves the resulting data to a file named "CSVEvents.csv". 
+    */
     public void encoderEvents(List<Event> listEvents){
         CSVEncoder<Event> encoder = new CSVEncoder<>(){
             @Override
@@ -292,6 +287,10 @@ public class TicketOffice implements Serializable{
         saveCSV("CSVEvents.csv",encoder.encode(listEvents));
     }
 
+    /*
+    * Encodes a list of Customer objects into a CSV format (using a custom CSVEncoder implementation)
+    * and saves the resulting data to a file named "CSVCustomers.csv" 
+    */
     public void encoderCustomer(List<Customer> listCustomers){
         CSVEncoder<Customer> encoder = new CSVEncoder<>(){
             @Override
@@ -323,7 +322,10 @@ public class TicketOffice implements Serializable{
         };
         saveCSV("CSVCustomers.csv",encoder.encode(listCustomers));
     }
-
+    /**
+    * Encodes a list of Venue objects into a CSV format (using a custom CSVEncoder implementation)
+    * and saves the resulting data to a file named "CSVVenues.csv".
+    */
     public void encoderVenues(List<Venue> listVenues){
         CSVEncoder<Venue> encoder = new CSVEncoder<>(){
             @Override
@@ -353,7 +355,10 @@ public class TicketOffice implements Serializable{
         };
         saveCSV("CSVVenues.csv",encoder.encode(listVenues));
     }
-
+    /* 
+    * Saves the provided CSV formatted content string to a specified file name using a FileWriter.
+    * Uses try-with-resources to ensure the writer is closed automatically
+    */
     public static void saveCSV(String fileName, String csvContent){
         try(FileWriter writer = new FileWriter(fileName)){
             writer.write(csvContent);
@@ -362,6 +367,7 @@ public class TicketOffice implements Serializable{
         }
     }
 
+    // The following methods return the core attributes and data lists of the ticket office system
     public List<Ticket> getTickets(){return ticketsRegister;}
     public int getTicketOfficeNit(){return ticketOfficeNit;}
     public String getTicketOfficeAddress(){return ticketOfficeAddress;}
