@@ -62,6 +62,6 @@ public class Location implements Serializable{
     //Generates a display string for the location showing name and capacity
     @Override
     public String toString() {
-        return locationName + " - " + locationCapacity + " - " + locationPrice;
+        return locationName + " - Cap:" + locationCapacity + " - Precio: $" + locationPrice;
     }
 }
