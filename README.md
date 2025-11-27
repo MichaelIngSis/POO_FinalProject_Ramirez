@@ -27,6 +27,8 @@ En este orden de ideas, las instrucciones para ejecutar el programa de forma cor
 
 ## Ejemplo de Entrada/Salida
 
+En el siguiente ejemplo de entrada/salida vamos a realizar el ingreso de un evento a la aplicación, donde veremos el flujo desde el menú, hasta la creación del evento, pasando por las pantallas intermedias y comprobando que se haya agregado correctamente, ademas miraremos como se guardan los datos al exportar el evento en un archivo CSV.
+
 Menú de la Oficina:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/54c51b0355a48d7f6afb6ebb12b54f090a23961b/Images_Example/Captura%20de%20pantalla%202025-11-26%20204242.png)
@@ -45,20 +47,18 @@ Click en "Agregar", muestra el siguiente mensaje:
 
 Posteriormente sale al administrador de eventos y se muestra la lista de eventos donde se ha agregado:
 
-![image alt]
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/fb190d40c70f266a05a360210c7d32ea80bcec6e/Images_Example/Captura%20de%20pantalla%202025-11-26%20204416.png)
 
 Si deseamos exportar csv, entonces le damos click en exportar eventos:
 
-![image alt]
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/76128dd21df994abbcda7322319ca914d09f865a/Images_Example/Captura%20de%20pantalla%202025-11-26%20210738.png)
+
+Nos lanza un mensaje, sobre el exito de la exportación del archivo:
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/76128dd21df994abbcda7322319ca914d09f865a/Images_Example/Captura%20de%20pantalla%202025-11-26%20210752.png)
 
 Finalmente, comprobamos como quedo nuestro CSV:
 
-![image alt]
-
-
-
-
-
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/76128dd21df994abbcda7322319ca914d09f865a/Images_Example/Captura%20de%20pantalla%202025-11-26%20210811.png)
 
 ## Enlace Diagrama de Clase
 
