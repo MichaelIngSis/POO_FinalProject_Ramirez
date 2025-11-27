@@ -41,11 +41,11 @@ Posteriormente al darle click en el botón de agregar eventos, se abre una panta
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/16de300a5d61da099f0c5e9b4f6d572766a4171d/Images_Example/Captura%20de%20pantalla%202025-11-26%20204352.png)
 
-En el menú que se abre y despues de haber ingresado los datos del evento, se presiona click en "Agregar", el sistema procede a mostrar por pantalla el siguiente mensaje: 
+Al presionar click en "Agregar", el sistema procede a mostrar por pantalla el siguiente mensaje: 
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/6786bc8a095256bcafce8debae3714203b3b78eb/Images_Example/Captura%20de%20pantalla%202025-11-26%20204402.png)
 
-Nos devuelve automaticamente al administrador de eventos y se muestra la lista de eventos donde se ha agregado:
+El sistema nos devuelve automaticamente al administrador de eventos y se muestra la lista de eventos donde podemos comprobar que el evento se ha agregado correctamente:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/fb190d40c70f266a05a360210c7d32ea80bcec6e/Images_Example/Captura%20de%20pantalla%202025-11-26%20204416.png)
 
@@ -56,7 +56,7 @@ Si deseamos exportar csv, entonces le damos click en exportar eventos:
 Nos lanza un mensaje, sobre el exito de la exportación del archivo:
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/76128dd21df994abbcda7322319ca914d09f865a/Images_Example/Captura%20de%20pantalla%202025-11-26%20210752.png)
 
-Finalmente, comprobamos como quedo nuestro CSV:
+Finalmente, comprobamos como quedo nuestro CSV con los datos que tiene la lista de eventos:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/76128dd21df994abbcda7322319ca914d09f865a/Images_Example/Captura%20de%20pantalla%202025-11-26%20210811.png)
 
