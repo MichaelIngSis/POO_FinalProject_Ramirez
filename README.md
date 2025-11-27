@@ -31,6 +31,15 @@ Menú de la Oficina:
 
 ![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/54c51b0355a48d7f6afb6ebb12b54f090a23961b/Images_Example/Captura%20de%20pantalla%202025-11-26%20204242.png)
 
+Click en administrar eventos, muestra el menú exclusivo para eventos:
+
+![image alt](https://github.com/MichaelIngSis/POO_FinalProject_Ramirez/blob/611d013749d220a3f55d85322463009884f5df88/Images_Example/Captura%20de%20pantalla%202025-11-26%20204314.png)
+
+Click en agregar eventos, abre una pantalla para ingresar los datos del evento:
+
+![image alt]
+
+
 
 
 
